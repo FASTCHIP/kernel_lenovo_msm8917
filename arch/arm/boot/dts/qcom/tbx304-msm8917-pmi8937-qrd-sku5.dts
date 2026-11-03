@@ -28,3 +28,14 @@
 };
 
 #include "tbx304/tbx304-overlay.dtsi"
+
+
+/ {
+	ramoops@8ee00000 {
+		compatible = "ramoops";
+		reg = <0xbff80000 0x80000>;
+		record-size = <0x5000>;
+		console-size = <0x40000>;
+		pmsg-size = <0x20000>;
+	};
+};

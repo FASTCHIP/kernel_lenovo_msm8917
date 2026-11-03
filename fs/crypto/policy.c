@@ -67,7 +67,8 @@ int fscrypt_ioctl_set_policy(struct file *filp, const void __user *arg)
 	if (!inode_owner_or_capable(inode))
 		return -EACCES;
 
-	if (policy.version != 0)
+	/* A14 vold sends version 1 for legacy v1 policies; accept both */
+	if (policy.version != 0 && policy.version != 1)
 		return -EINVAL;
 
 	ret = mnt_want_write_file(filp);
